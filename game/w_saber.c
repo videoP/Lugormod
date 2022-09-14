@@ -9248,14 +9248,15 @@ nextStep:
 						}
 					}
 				}
-				else if ( d_saberSPStyleDamage.integer )
+				//Loda - always use SP style interp
+				else //if ( d_saberSPStyleDamage.integer )
 				{
 					G_SPSaberDamageTraceLerped( self, rSaberNum, rBladeNum, boltOrigin, end, (/*MASK_PLAYERSOLID|*/CONTENTS_LIGHTSABER|MASK_SHOT) );
 				}
-				else
-				{
-					CheckSaberDamage(self, rSaberNum, rBladeNum, boltOrigin, end, qfalse, (/*MASK_PLAYERSOLID|*/CONTENTS_LIGHTSABER|MASK_SHOT), qfalse);
-				}
+				//else
+				//{
+				//	CheckSaberDamage(self, rSaberNum, rBladeNum, boltOrigin, end, qfalse, (/*MASK_PLAYERSOLID|*/CONTENTS_LIGHTSABER|MASK_SHOT), qfalse);
+				//}
 
 				VectorCopy(boltOrigin, self->client->saber[rSaberNum].blade[rBladeNum].trail.base);
 				VectorCopy(end, self->client->saber[rSaberNum].blade[rBladeNum].trail.tip);

@@ -489,6 +489,7 @@ typedef struct {
 
 	// for fixed msec Pmove
 	int			pmove_fixed;
+	int			pmove_float;
 	int			pmove_msec;
 
 	// callbacks to test the world

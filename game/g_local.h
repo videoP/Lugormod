@@ -1064,6 +1064,8 @@ extern	vmCvar_t	g_smoothClients;
 #include "../namespace_begin.h"
 extern	vmCvar_t	pmove_fixed;
 extern	vmCvar_t	pmove_msec;
+extern	vmCvar_t	pmove_float;
+extern	vmCvar_t	g_fixHighFPSAbuse;
 #include "../namespace_end.h"
 
 extern	vmCvar_t	g_enableBreath;

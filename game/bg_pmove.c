@@ -12990,8 +12990,19 @@ void PmoveSingle (pmove_t *pmove) {
 	// entering / leaving water splashes
 	PM_WaterEvents();
 
-	// snap some parts of playerstate to save network bandwidth
-	trap_SnapVector( pm->ps->velocity );
+	if (pm->ps->persistant[PERS_TEAM] == TEAM_SPECTATOR) {
+		trap_SnapVector(pm->ps->velocity);
+	}
+	else {
+		if (pm->pmove_float > 1) {//japro fix racemode fps
+		}
+		else if (g_fixHighFPSAbuse.integer && ((pml.msec < 4) || (pml.msec > 25))) { //More than 333fps, or less than 40fps.
+			//trap->SendServerCommand( -1, va("print \"333? msec: %i\n\"", pml.msec ));
+		}
+		else if (!pm->pmove_float) {
+			trap_SnapVector(pm->ps->velocity); // snap velocity to integer coordinates to save network bandwidth
+		}
+	}
 
 	if (pm->ps->pm_type == PM_JETPACK || gPMDoSlowFall )
 	{

@@ -264,6 +264,8 @@ vmCvar_t	g_smoothClients;
 #include "../namespace_begin.h"
 vmCvar_t	pmove_fixed;
 vmCvar_t	pmove_msec;
+vmCvar_t	pmove_float;
+vmCvar_t	g_fixHighFPSAbuse;
 #include "../namespace_end.h"
 
 vmCvar_t	g_listEntity;
@@ -776,6 +778,8 @@ static cvarTable_t		gameCvarTable[] = {
 	{ &g_smoothClients, "g_smoothClients", "1", 0, 0, qfalse},
 	{ &pmove_fixed, "pmove_fixed", "0", CVAR_SYSTEMINFO, 0, qfalse},
 	{ &pmove_msec, "pmove_msec", "8", CVAR_SYSTEMINFO, 0, qfalse},
+	{ &pmove_float, "pmove_float", "0", CVAR_SYSTEMINFO, 0, qfalse },
+	{ &g_fixHighFPSAbuse, "g_fixHighFPSAbuse", "0", CVAR_SYSTEMINFO, 0, qfalse },
 
 	{ &g_dismember, "g_dismember", "0", CVAR_ARCHIVE, 0, qtrue  },
 	{ &g_forceDodge, "g_forceDodge", "1", 0, 0, qtrue  },

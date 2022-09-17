@@ -186,7 +186,7 @@ profSkill_t jediSkill_Neutral_Jump = {
 	jediSkill_Neutral_Jump_Descr,
 	
 	0,
-	SkillLevels_Default,
+	{0, 4}, //cap jump at lvl 4
 	SkillPoints_Default,
 
 	Lmd_Prof_Jedi_GetSkill_Jump,

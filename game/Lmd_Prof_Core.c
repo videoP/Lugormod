@@ -523,7 +523,7 @@ qboolean Professions_ChooseProf(gentity_t *ent, int prof){
 		PlayerAcc_SetCredits(ent, PlayerAcc_GetCredits(ent) / 2);
 
 	PlayerAcc_Prof_SetProfession(ent, prof);
-	PlayerAcc_Prof_SetLevel(ent, 1);
+	PlayerAcc_Prof_SetLevel(ent, 30); //Start them at level 30
 
 	recallDroppedCredits(ent);
 

@@ -358,7 +358,7 @@ void Weapon_Disruptor_Fire(gentity_t *ent, gentity_t *missile, weaponFire_t *dat
 	traces = 0;
 	while ( traces < 10 )
 	{//need to loop this in case we hit a Jedi who dodges the shot
-		if (d_projectileGhoul2Collision.integer)
+		if (d_projectileGhoul2Collision.integer == 1)
 		{
 			trap_G2Trace( &tr, start, NULL, NULL, end, ignore, MASK_SHOT, G2TRFLAG_DOGHOULTRACE|G2TRFLAG_GETSURFINDEX|G2TRFLAG_THICK|G2TRFLAG_HITCORPSES, g_g2TraceLod.integer );
 		}

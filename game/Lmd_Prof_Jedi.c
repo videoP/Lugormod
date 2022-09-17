@@ -422,7 +422,7 @@ profSkill_t jediSkill_Light_TeamHeal = {
 	jediSkill_Light_TeamHeal_Descr,
 	
 	0,
-	SkillLevels_Default,
+	{0, 1},
 	SkillPoints_Default,
 
 	Lmd_Prof_Jedi_GetSkill_TeamHeal,
@@ -478,7 +478,7 @@ profSkill_t jediSkill_Dark_Drain = {
 	jediSkill_Dark_Drain_Descr,
 	
 	0,
-	SkillLevels_Default,
+	{0, 4},
 	SkillPoints_Default,
 
 	Lmd_Prof_Jedi_GetSkill_Drain,
@@ -549,7 +549,7 @@ profSkill_t jediSkill_Dark_Energize = {
 	jediSkill_Dark_Energize_Descr,
 	
 	0,
-	SkillLevels_Default,
+	{0, 1},
 	SkillPoints_Default,
 
 	Lmd_Prof_Jedi_GetSkill_Energize,

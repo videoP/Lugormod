@@ -18,6 +18,7 @@ extern vmCvar_t		d_saberSPStyleDamage;
 extern vmCvar_t		g_debugSaberLocks;
 // nmckenzie: SABER_DAMAGE_WALLS
 extern vmCvar_t		g_saberWallDamageScale;
+extern vmCvar_t		g_backslashDamageScale;
 
 int saberSpinSound = 0;
 
@@ -4255,6 +4256,162 @@ static GAME_INLINE qboolean CheckSaberDamage(gentity_t *self, int rSaberNum, int
 				trMask &= ~CONTENTS_LIGHTSABER;
 			}
 		}
+	//JAPRO - Serverside - Japro Saber Cleanup MP saber damages - Start
+		{
+		dmg = SABER_HITDAMAGE;//35
+
+		if (self->client->ps.forceHandExtend == HANDEXTEND_DUELCHALLENGE)//Remove dmg from swings while duel challenging
+			dmg = 1;
+		else if (self->client->ps.saberMove == LS_ROLL_STAB)//All styles rollstab
+			dmg = G_GetAttackDamage(self, 2, 25, 0.5f);
+
+		else if (self->client->ps.fd.saberAnimLevel == SS_STAFF)//Staff Style
+		{
+			if (self->client->ps.saberMove == LS_SPINATTACK)//Staff crouch kata (auto ramped)
+				dmg = 10;
+			else if (self->client->ps.saberMove == LS_A_BACK)//Activated second blade after Backslash
+				dmg = G_GetAttackDamage(self, 2, 32 * g_backslashDamageScale.value, 0.5f);
+			else if (self->client->ps.saberMove == LS_A_BACK_CR)//Activated second blade after DBS
+				dmg = G_GetAttackDamage(self, 2, 42 * g_backslashDamageScale.value, 0.5f);
+			else if (self->client->ps.saberMove == LS_A_BACKSTAB)//Staff backstab
+				dmg = G_GetAttackDamage(self, 2, 25, 0.5f);
+			else if (self->client->ps.saberMove == LS_STABDOWN_STAFF)//Tweaked staff groundstab
+				dmg = G_GetAttackDamage(self, 2, 20, 0.5f);
+			else if (BG_KickingAnim(self->client->ps.legsAnim) || BG_KickingAnim(self->client->ps.torsoAnim))//Staff ground kick
+				dmg = 2;
+			else if (self->client->ps.saberMove == LS_STAFF_SOULCAL)//Staff kata
+				dmg = G_GetAttackDamage(self, 40, 50, 0.5f);
+			else if (self->client->ps.saberMove == LS_JUMPATTACK_STAFF_RIGHT)//Forward staff dfa
+				dmg = G_GetAttackDamage(self, 2, 50, 0.5f);
+			else if (self->client->ps.saberMove == LS_BUTTERFLY_LEFT)//Left staff dfa
+				dmg = G_GetAttackDamage(self, 2, 50, 0.5f);
+			else if (self->client->ps.saberMove == LS_BUTTERFLY_RIGHT)//right staff dfa
+				dmg = G_GetAttackDamage(self, 2, 50, 0.5f);
+			else if (self->client->ps.saberMove == LS_A_BACKFLIP_ATK)//back staff dfa
+				dmg = G_GetAttackDamage(self, 2, 50, 0.5f);
+			else if (self->client->ps.saberMove >= LS_KICK_F_AIR && self->client->ps.saberMove <= LS_KICK_L_AIR)
+				dmg = 40;
+			else//Normal Staff Swing
+				dmg = 30;
+		}
+
+		else if (self->client->ps.fd.saberAnimLevel == SS_DUAL)//Dual Style
+		{
+			if (self->client->ps.saberMove == LS_SPINATTACK_DUAL)//Dual crouch kata (auto ramped)
+				dmg = 10;
+			else if (self->client->ps.saberMove == LS_A_BACK)//Dual Backslash
+				dmg = G_GetAttackDamage(self, 2, 35 * g_backslashDamageScale.value, 0.5f);
+			else if (self->client->ps.saberMove == LS_A_BACK_CR)//Dual DBS
+				dmg = G_GetAttackDamage(self, 2, 45 * g_backslashDamageScale.value, 0.5f);
+			else if (self->client->ps.saberMove == LS_A_BACKSTAB)//Activated second saber after backstabbing
+				dmg = G_GetAttackDamage(self, 2, 30, 0.5f);
+			else if (self->client->ps.saberMove == LS_A_LUNGE)//Dual Switch Lunge
+				dmg = G_GetAttackDamage(self, 20, 40, 0.3f);
+			else if (self->client->ps.saberMove == LS_STABDOWN_DUAL)//Tweaked dual groundstab
+				dmg = G_GetAttackDamage(self, 2, 30, 0.5f);
+			else if (self->client->ps.saberMove == LS_DUAL_SPIN_PROTECT)//Dual kata
+				dmg = 50;
+			else if (self->client->ps.saberMove == LS_JUMPATTACK_DUAL)//Forward dual butterfly
+				dmg = G_GetAttackDamage(self, 2, 50, 0.5f);
+			else//Normal Dual swing
+				dmg = 30;
+		}
+
+		else if (self->client->ps.saberMove == LS_STABDOWN)//Tweaked single groundstab (all styles)
+			dmg = G_GetAttackDamage(self, 2, 20, 0.5f);
+
+		else if (self->client->ps.fd.saberAnimLevel == SS_STRONG)//Red Style 
+		{
+			if (self->client->ps.saberMove == LS_A_T2B) { //Red Vert
+					dmg = G_GetAttackDamage(self, 30 , 70, 0.65f);
+			}
+			else if (self->client->ps.saberMove == LS_A_BACK) {//Red Backslash
+					dmg = G_GetAttackDamage(self, 2, 30 * g_backslashDamageScale.value, 0.5f);
+			}
+			else if (self->client->ps.saberMove == LS_A_BACK_CR) { //Red DBS
+					dmg = G_GetAttackDamage(self, 2, 40 * g_backslashDamageScale.value, 0.5f);
+			}
+			else if (self->client->ps.saberMove == LS_A_JUMP_T__B_) {//Red DFA
+					dmg = G_GetAttackDamage(self, 2, 70, 0.65f);
+			}
+			else if (self->client->ps.saberMove == LS_A3_SPECIAL)
+				dmg = 20;
+			else {//Regular swing
+					dmg = G_GetAttackDamage(self, 30, 85, 0.65f);
+			}
+			}
+		else if (self->client->ps.fd.saberAnimLevel == SS_MEDIUM)//Yellow Style
+		{
+			if (self->client->ps.saberMove == LS_A_FLIP_STAB || self->client->ps.saberMove == LS_A_FLIP_SLASH) { //Yellow DFA and something else?
+					dmg = G_GetAttackDamage(self, 2, 50, 0.5f);
+			}
+			else if (self->client->ps.saberMove == LS_A_BACK) { //Yellow Backslash
+					dmg = G_GetAttackDamage(self, 2, 30 * g_backslashDamageScale.value, 0.5f);
+			}
+			else if (self->client->ps.saberMove == LS_A_BACK_CR) {//Yellow DBS
+					dmg = G_GetAttackDamage(self, 2, 40 * g_backslashDamageScale.value, 0.5f);
+			}
+			else if (self->client->ps.saberMove == LS_A_BACKSTAB)//Switched from staff backstab
+				dmg = G_GetAttackDamage(self, 2, 20, 0.5f);
+			else if (self->client->ps.saberMove == LS_SPINATTACK)//Switched from staff crouch kata'ing
+				dmg = 10;
+			else if (self->client->ps.saberMove == LS_STAFF_SOULCAL)//Switched from staff kata
+				dmg = G_GetAttackDamage(self, 60, 50, 0.5f);
+			else if (self->client->ps.saberMove == LS_JUMPATTACK_STAFF_RIGHT)//Switched from Forward staff dfa
+				dmg = G_GetAttackDamage(self, 2, 50, 0.5f);
+			else if (self->client->ps.saberMove == LS_BUTTERFLY_LEFT)//Switched from Left staff dfa
+				dmg = G_GetAttackDamage(self, 2, 50, 0.5f);
+			else if (self->client->ps.saberMove == LS_BUTTERFLY_RIGHT)//Switched from right staff dfa
+				dmg = G_GetAttackDamage(self, 2, 50, 0.5f);
+			else if (self->client->ps.saberMove == LS_A_BACKFLIP_ATK)//Switched from back staff dfa
+				dmg = G_GetAttackDamage(self, 2, 50, 0.5f);
+			else if (self->client->ps.saberMove >= LS_KICK_F_AIR && self->client->ps.saberMove <= LS_KICK_L_AIR)
+				dmg = 55;
+			else if (self->client->ps.saberMove == LS_A_T2B) {//now what is this
+					dmg = 30;
+			}
+			else if (self->client->ps.saberMove == LS_A2_SPECIAL)
+				dmg = 20;
+			else {//Normal yellow swing
+					dmg = 40;
+			}
+		}
+		else if (self->client->ps.fd.saberAnimLevel == SS_FAST)//Blue Style
+		{
+			if (self->client->ps.saberMove == LS_A_LUNGE) {//Blue Lunge
+					dmg = G_GetAttackDamage(self, 20, 40, 0.3f);
+			}
+			else if (self->client->ps.saberMove == LS_A_BACKSTAB) { //Blue Backstab
+					dmg = G_GetAttackDamage(self, 2, 25, 0.5f);
+			}
+			else if (self->client->ps.saberMove == LS_A_BACK)//Switched from dual backslash
+				dmg = G_GetAttackDamage(self, 2, 30 * g_backslashDamageScale.value, 0.5f);
+			else if (self->client->ps.saberMove == LS_A_BACK_CR)//Switched from dual DBS
+				dmg = G_GetAttackDamage(self, 2, 40 * g_backslashDamageScale.value, 0.5f);
+			else if (self->client->ps.saberMove == LS_SPINATTACK_DUAL)//Switched from dual crouch kata'ing
+				dmg = 10;
+			else if (self->client->ps.saberMove == LS_DUAL_SPIN_PROTECT)//Switched from dual kata
+				dmg = 70;
+			else if (self->client->ps.saberMove == LS_JUMPATTACK_DUAL)//Swithced from forward dual butterfly
+				dmg = G_GetAttackDamage(self, 2, 50, 0.5f);
+			else if (self->client->ps.saberMove == LS_A2_SPECIAL)
+				dmg = 20;
+			else {//Normal blue swing
+					dmg = 10;//was 35
+			}
+		}
+		else { //tavion, desann
+			if (self->client->ps.saberMove == LS_A_BACK)//Red Backslash
+				dmg = G_GetAttackDamage(self, 2, 30 * g_backslashDamageScale.value, 0.5f);
+			else if (self->client->ps.saberMove == LS_A_BACK_CR)//Red DBS
+				dmg = G_GetAttackDamage(self, 2, 40 * g_backslashDamageScale.value, 0.5f);
+		}
+
+		attackStr = self->client->ps.fd.saberAnimLevel;
+		}
+	}
+	//JAPRO - Serverside - Cleanup MP saber damages - End
+#if 0
 		else
 		{
 			dmg = SABER_HITDAMAGE;
@@ -4358,6 +4515,7 @@ static GAME_INLINE qboolean CheckSaberDamage(gentity_t *self, int rSaberNum, int
 			attackStr = self->client->ps.fd.saberAnimLevel;
 		}
 	}
+#endif
 	else if (self->client->ps.saberAttackWound < level.time &&
 		self->client->ps.saberIdleWound < level.time)
 	{ //just touching, do minimal damage and only check for it every 200ms (mainly to cut down on network traffic for hit events)
@@ -4386,7 +4544,7 @@ static GAME_INLINE qboolean CheckSaberDamage(gentity_t *self, int rSaberNum, int
 		}
 		else
 		{
-			dmg = SABER_NONATTACK_DAMAGE;
+			dmg = 0;//SABER_NONATTACK_DAMAGE;
 		}
 		idleDamage = qtrue;
 	}
@@ -4658,12 +4816,14 @@ static GAME_INLINE qboolean CheckSaberDamage(gentity_t *self, int rSaberNum, int
 			return qfalse;
 		}
 
+		/*
 		if ( BG_StabDownAnim( self->client->ps.torsoAnim )
 			&& g_entities[tr.entityNum].client 
 			&& !BG_InKnockDownOnGround( &g_entities[tr.entityNum].client->ps ) )
 		{//stabdowns only damage people who are actually on the ground...
 			return qfalse;
 		}
+		*/
 		self->client->ps.saberIdleWound = level.time + g_saberDmgDelay_Idle.integer;
 
 		didHit = qtrue;

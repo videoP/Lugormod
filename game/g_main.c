@@ -330,6 +330,7 @@ vmCvar_t	g_powerDuelEndHealth;
 // nmckenzie: temporary way to show player healths in duels - some iface gfx in game would be better, of course.
 // DUEL_HEALTH
 vmCvar_t		g_showDuelHealths;
+vmCvar_t		g_backslashDamageScale;
 
 //RoboPhred:
 vmCvar_t lmd_DataPath;
@@ -982,6 +983,7 @@ static cvarTable_t		gameCvarTable[] = {
 	{ &g_jmforcelevel, "g_jmforcelevel", "3", CVAR_ARCHIVE, 0, qtrue  },
 	{ &g_jmstarthealth, "g_jmstarthealth", "100", CVAR_ARCHIVE, 0, qtrue  },
 	{ &g_jmsaberDamageScale, "g_jmsaberDamageScale", "2",CVAR_ARCHIVE, 0, qtrue  },
+	{ &g_backslashDamageScale, "g_backslashDamageScale", "1", CVAR_CHEAT },
 
 	//end Lugormod cvars.
 	//,

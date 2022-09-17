@@ -3759,9 +3759,7 @@ static qboolean PM_CheckJump( void )
 			&& pm->ps->fd.forcePowerLevel[FP_LEVITATION] > FORCE_LEVEL_1
 			&& pm->ps->velocity[2] > 200
 			&& PM_GroundDistance() <= 80 //unfortunately we do not have a happy ground timer like SP (this would use up more bandwidth if we wanted prediction workign right), so we'll just use the actual ground distance.
-			&& !BG_InSpecialJump(pm->ps->legsAnim)
-			&& pm->ps->duelInProgress
-			&& g_entities[pm->ps->clientNum].client->Lmd.duel.duelType & DT_FULL_FORCE)
+			&& !BG_InSpecialJump(pm->ps->legsAnim))
 			{//run up wall, flip backwards
 			vec3_t fwd, traceto, mins, maxs, fwdAngles;
 			trace_t	trace;
@@ -3811,9 +3809,7 @@ static qboolean PM_CheckJump( void )
 				&& pm->ps->fd.forcePowerLevel[FP_LEVITATION] > FORCE_LEVEL_1
 				&& pm->ps->velocity[2] > 200
 				&& PM_GroundDistance() <= 80 //unfortunately we do not have a happy ground timer like SP (this would use up more bandwidth if we wanted prediction workign right), so we'll just use the actual ground distance.
-				&& !BG_InSpecialJump(pm->ps->legsAnim)
-				&& pm->ps->duelInProgress
-				&& g_entities[pm->ps->clientNum].client->Lmd.duel.duelType & DT_FULL_FORCE)
+				&& !BG_InSpecialJump(pm->ps->legsAnim))
 			{
 				vec3_t fwd, traceto, mins, maxs, fwdAngles;
 				trace_t	trace;

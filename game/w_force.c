@@ -6301,10 +6301,12 @@ void WP_ForcePowersUpdate( gentity_t *self, usercmd_t *ucmd ){
 		self->client->ps.fd.forceGripCripple = 1;
 
 		//keep the saber off during this period
+		/* g_fixSaberInGrip
 		if (self->client->ps.weapon == WP_SABER && !self->client->ps.saberHolstered)
 		{
 			Cmd_ToggleSaber_f(self);
 		}
+		*/
 	}
 	else
 	{

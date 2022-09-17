@@ -293,7 +293,7 @@ void WP_ActivateSaber( gentity_t *self )
 		self->client->ps.forceHandExtendTime = 0;
 	}
 	else if (self->client->ps.fd.forceGripCripple)
-	{ //can't activate saber while being gripped
+	{ //can't activate saber while being gripped //g_fixSaberInGrip
 		return;
 	}
 

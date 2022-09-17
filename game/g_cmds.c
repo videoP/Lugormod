@@ -3108,9 +3108,12 @@ int G_ItemUsable(playerState_t *ps, int forcedUse)
 void saberKnockDown(gentity_t *saberent, gentity_t *saberOwner, gentity_t *other);
 
 void Cmd_ToggleSaber_f(gentity_t *ent){
+	//g_fixSaberInGrip
+	/*
 	//if they are being gripped, don't let them unholster their saber
 	if(ent->client->ps.fd.forceGripCripple && ent->client->ps.saberHolstered)
 		return;
+	*/
 
 	if(ent->client->ps.saberInFlight){
 		//turn it off in midair

@@ -657,7 +657,7 @@ static cvarTable_t		gameCvarTable[] = {
 
 	{ &d_powerDuelPrint, "d_powerDuelPrint", "0", 0, qtrue },
 
-	{ &d_saberGhoul2Collision, "d_saberGhoul2Collision", "1", CVAR_CHEAT, 0, qtrue  },
+	{ &d_saberGhoul2Collision, "d_saberGhoul2Collision", "1", CVAR_ARCHIVE, 0, qtrue  },
 	{ &g_saberBladeFaces, "g_saberBladeFaces", "1", 0, 0, qtrue  },
 
 	{ &d_saberAlwaysBoxTrace, "d_saberAlwaysBoxTrace", "0", CVAR_CHEAT, 0, qtrue  },
@@ -671,7 +671,7 @@ static cvarTable_t		gameCvarTable[] = {
 
 	{ &d_perPlayerGhoul2, "d_perPlayerGhoul2", "0", CVAR_CHEAT, 0, qtrue },
 
-	{ &d_projectileGhoul2Collision, "d_projectileGhoul2Collision", "1", CVAR_CHEAT, 0, qtrue  },
+	{ &d_projectileGhoul2Collision, "d_projectileGhoul2Collision", "1", CVAR_ARCHIVE, 0, qtrue  },
 
 	{ &g_g2TraceLod, "g_g2TraceLod", "3", 0, 0, qtrue  },
 

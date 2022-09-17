@@ -186,7 +186,7 @@ profSkill_t jediSkill_Neutral_Jump = {
 	jediSkill_Neutral_Jump_Descr,
 	
 	0,
-	{0, 4}, //cap jump at lvl 4
+	{0, 3}, //cap jump at lvl 3
 	SkillPoints_Default,
 
 	Lmd_Prof_Jedi_GetSkill_Jump,
@@ -780,7 +780,7 @@ void Cmd_Ionlysaber_f (gentity_t *ent, int iArg)
 		|| ent->client->pers.Lmd.persistantFlags & SPF_IONLYSABER
 		|| duelInProgress(&ent->client->ps)
 		|| ent->client->ps.forceHandExtend != HANDEXTEND_NONE
-		|| BG_HasYsalamiri(g_gametype.integer, &ent->client->ps)){
+		|| BG_HasYsalamiri(g_gametype.integer, &ent->client->ps)) {
 			return;
 	}
 	if(ent->client->Lmd.moneyStash){

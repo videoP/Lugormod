@@ -1252,9 +1252,9 @@ void YsalamiriBlast (vec3_t origin, int lvl){
 		}
 
 		if (ent_list[i]->client->ps.powerups[PW_YSALAMIRI] <
-			level.time + lvl  * 5000) {
+			level.time + lvl  * 1000) { //this is so strong
 				ent_list[i]->client->ps.powerups[PW_YSALAMIRI] =
-					level.time + lvl  * 5000;
+					level.time + lvl  * 1000;
 		}
 	}
 	G_PlayEffectID(G_EffectIndex("env/quake_smaller"), origin, vec3_origin);

@@ -4237,7 +4237,7 @@ void ClientThink_real( gentity_t *ent ) {
 
 		// Did we kick someone in our pmove sequence?
 		//Ufo: flipkicks allowed only during Fullforce duels
-		if (client->ps.forceKickFlip && client->ps.duelInProgress && client->Lmd.duel.duelType & DT_FULL_FORCE)
+		if (client->ps.forceKickFlip /*&& client->ps.duelInProgress && client->Lmd.duel.duelType & DT_FULL_FORCE*/)
 		{
 			gentity_t *faceKicked = &g_entities[client->ps.forceKickFlip-1];
 

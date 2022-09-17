@@ -844,7 +844,7 @@ void G_RunMissile( gentity_t *ent ) {
 		}
 	}
 	// trace a line from the previous position to the current position
-	if (d_projectileGhoul2Collision.integer)
+	if (d_projectileGhoul2Collision.integer == 1)
 	{
 		trap_G2Trace( &tr, ent->r.currentOrigin, ent->r.mins, ent->r.maxs, origin, passent, ent->clipmask, G2TRFLAG_DOGHOULTRACE|G2TRFLAG_GETSURFINDEX|G2TRFLAG_THICK|G2TRFLAG_HITCORPSES, g_g2TraceLod.integer );
 

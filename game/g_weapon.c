@@ -1706,8 +1706,16 @@ static void WP_CreateFlechetteBouncyThing( vec3_t start, vec3_t fwd, gentity_t *
 	missile->mass = 4;
 
 	// How 'bout we give this thing a size...
-	VectorSet( missile->r.mins, -3.0f, -3.0f, -3.0f );
-	VectorSet( missile->r.maxs, 3.0f, 3.0f, 3.0f );
+	if (d_projectileGhoul2Collision.integer > 1)
+	{
+		VectorSet(missile->r.mins, -1.0f, -1.0f, -1.0f);
+		VectorSet(missile->r.maxs, 1.0f, 1.0f, 1.0f);
+	}
+	else
+	{
+		VectorSet(missile->r.mins, -3.0f, -3.0f, -3.0f);
+		VectorSet(missile->r.maxs, 3.0f, 3.0f, 3.0f);
+	}
 	missile->clipmask = MASK_SHOT;
 
 	missile->touch = touch_NULL;

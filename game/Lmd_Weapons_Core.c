@@ -1552,7 +1552,7 @@ void Weapon_Concussion_AltFire(gentity_t *ent, gentity_t *missile, weaponFire_t 
 	for ( i = 0; i < traces; i++ ){
 		VectorMA( start, shotRange, forward, end );
 
-		if (d_projectileGhoul2Collision.integer)
+		if (d_projectileGhoul2Collision.integer == 1)
 			trap_G2Trace( &tr, start, shot_mins, shot_maxs, end, skip, MASK_SHOT, G2TRFLAG_DOGHOULTRACE|G2TRFLAG_GETSURFINDEX|G2TRFLAG_HITCORPSES, g_g2TraceLod.integer );
 		else
 			trap_Trace( &tr, start, shot_mins, shot_maxs, end, skip, MASK_SHOT );

@@ -753,7 +753,7 @@ void G_MissileImpact( gentity_t *ent, trace_t *trace ) {
 				}
 				else
 				{//temp disable
-					other->client->cloakToggleTime = level.time + Q_irand( 3000, 10000 );
+					other->client->cloakToggleTime = level.time + 6500;
 				}
 			}
 		}

@@ -1436,13 +1436,13 @@ void DEMP2_AltRadiusDamage( gentity_t *ent ){
 					else if ( gent->s.NPC_class != CLASS_VEHICLE 
 						|| (gent->m_pVehicle && gent->m_pVehicle->m_pVehicleInfo->type != VH_FIGHTER) )
 					{//don't do this to fighters
-						gent->client->ps.electrifyTime = level.time + Q_irand( 300, 800 );
+						gent->client->ps.electrifyTime = level.time + 550;
 					}
 				}
 				if ( gent->client->ps.powerups[PW_CLOAKED] )
 				{//disable cloak temporarily
 					Jedi_Decloak( gent );
-					gent->client->cloakToggleTime = level.time + Q_irand( 3000, 10000 );
+					gent->client->cloakToggleTime = level.time + 6500;
 				}
 			}
 		}

@@ -2388,7 +2388,7 @@ void ForceLightningDamage( gentity_t *self, gentity_t *traceEnt, vec3_t dir, vec
 					if ( traceEnt->client->ps.powerups[PW_CLOAKED] )
 					{//disable cloak temporarily
 						Jedi_Decloak( traceEnt );
-						traceEnt->client->cloakToggleTime = level.time + Q_irand( 3000, 10000 );
+						traceEnt->client->cloakToggleTime = level.time + 6500;
 					}
 				}
 			}

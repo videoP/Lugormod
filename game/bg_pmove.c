@@ -9937,7 +9937,7 @@ void BG_AdjustClientSpeed(playerState_t *ps, usercmd_t *cmd, int svTime)
 
 	if (ps->fd.forcePowersActive & (1 << FP_GRIP))
 	{
-		ps->speed *= 0.4;
+		ps->speed *= 0.8; //Fix this
 	}
 
 	if (ps->fd.forcePowersActive & (1 << FP_SPEED))

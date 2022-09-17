@@ -12428,12 +12428,17 @@ void PmoveSingle (pmove_t *pmove) {
 	PM_AdjustAngleForWallRunUp( pm->ps, &pm->cmd, qtrue );
 	PM_AdjustAngleForWallRun( pm->ps, &pm->cmd, qtrue );
 
+	/*
 	if (pm->ps->saberMove == LS_A_JUMP_T__B_ || pm->ps->saberMove == LS_A_LUNGE ||
 		pm->ps->saberMove == LS_A_BACK_CR || pm->ps->saberMove == LS_A_BACK ||
 		pm->ps->saberMove == LS_A_BACKSTAB)
 	{
 		PM_SetPMViewAngle(pm->ps, pm->ps->viewangles, &pm->cmd);
 	}
+	*/
+	if (pm->ps->saberMove == LS_A_BACKSTAB || pm->ps->saberMove == LS_A_LUNGE) //let them spin backslash, red dfa
+		PM_SetPMViewAngle(pm->ps, pm->ps->viewangles, &pm->cmd);
+
 	//Lugormod I want this
 	//#if 0
 	if ((pm->ps->legsAnim) == BOTH_HUGGER1 ||
